@@ -29,25 +29,10 @@
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
           <a class="navbar-brand" href="#">Project name</a>
+          <a class="navbar-brand"><span id="eview">0</span> elements in viewport</a>
+          <a class="navbar-brand"><span id="callback" class="hidden">Callback called!</span></a>
         </div>
-        <div class="navbar-collapse collapse">
-          <form class="navbar-form navbar-right" role="form">
-            <div class="form-group">
-              <input type="text" placeholder="Email" class="form-control">
-            </div>
-            <div class="form-group">
-              <input type="password" placeholder="Password" class="form-control">
-            </div>
-            <button type="submit" class="btn btn-success">Sign in</button>
-          </form>
-        </div><!--/.navbar-collapse -->
       </div>
     </div>
 
@@ -55,41 +40,102 @@
     <div class="jumbotron">
       <div class="container">
         <h1>Hello, world!</h1>
-        <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-        <p><a class="btn btn-primary btn-lg" role="button">Learn more &raquo;</a></p>
+        <p>This is a sandbox page to test using JS to check if elements are in the current viewport.</p>
+        <p>
+          <h4>Image lazy loading</h4>
+          <ul>
+            <li>IMG elements with the .lazy class will only load once they are in the viewport.</li>
+          </ul>
+        </p>
+        <p>
+          <h4>Viewport entry callback</h4>
+          <ul>
+            <li>IMG elements with the .watch class will trigger a call back when they appear in the viewport.</li>
+          </ul>
+        </p>
       </div>
     </div>
 
     <div class="container">
-      <!-- Example row of columns -->
-      <div class="row">
-        <div class="col-md-4">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+        <div class="row">
+          <div class="col-md-4">
+            <a class="thumbnail">
+              <img class="lazy" data-src="https://c2.staticflickr.com/4/3865/15173725925_9a7cf776b1_z.jpg">
+            </a>
+          </div>
+          <div class="col-md-4">
+            <a class="thumbnail">
+              <img class="lazy" data-src="https://c2.staticflickr.com/6/5561/15167352482_91bf417341.jpg">
+            </a>
+          </div>
+          <div class="col-md-4">
+            <a class="thumbnail">
+              <img class="lazy" data-src="https://c2.staticflickr.com/4/3857/15165480951_9b85b32f2e.jpg">
+            </a>
+          </div>
         </div>
-        <div class="col-md-4">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-       </div>
-        <div class="col-md-4">
-          <h2>Heading</h2>
-          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+        <div class="row">
+          <div class="col-md-4">
+            <a class="thumbnail">
+              <img class="lazy" data-src="https://c2.staticflickr.com/6/5570/15142948946_2f8fcaeaab.jpg">
+            </a>
+          </div>
+          <div class="col-md-4">
+            <a class="thumbnail">
+              <img class="lazy" data-src="https://c2.staticflickr.com/6/5579/15152685286_25cb3466ee.jpg">
+            </a>
+          </div>
+          <div class="col-md-4">
+            <a class="thumbnail">
+              <img class="lazy" data-src="https://c2.staticflickr.com/4/3918/15141586656_fb74b39b06.jpg">
+            </a>
+          </div>
         </div>
-      </div>
+        <div class="row">
+          <div class="col-md-4">
+            <a class="thumbnail">
+              <img class="lazy" data-src="https://c2.staticflickr.com/4/3918/14983630089_3fc1507621.jpg">
+            </a>
+          </div>
+          <div class="col-md-4">
+            <a class="thumbnail">
+              <img class="lazy" data-src="https://c2.staticflickr.com/4/3867/14981875607_56fb3ea99e.jpg">
+            </a>
+          </div>
+          <div class="col-md-4">
+            <a class="thumbnail">
+              <img class="lazy" data-src="https://c2.staticflickr.com/4/3893/14981187537_0b9b25866a.jpg">
+            </a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <a class="thumbnail">
+              <img class="lazy watch" data-src="https://c2.staticflickr.com/6/5557/14980722100_b80c56fd14_z.jpg">
+            </a>
+          </div>
+          <div class="col-md-4">
+            <a class="thumbnail">
+              <img class="lazy watch" data-src="https://c2.staticflickr.com/6/5552/14980111980_5661858b70_z.jpg">
+            </a>
+          </div>
+          <div class="col-md-4">
+            <a class="thumbnail">
+              <img class="lazy watch" data-src="https://c2.staticflickr.com/6/5593/14979156069_4b5553ff60.jpg">
+            </a>
+          </div>
+        </div>
 
       <hr>
 
       <footer>
         <p>&copy; Company 2014</p>
       </footer>
-    </div> <!-- /container -->        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    </div> <!-- /container -->        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.0.min.js"><\/script>')</script>
 
         <script src="js/vendor/bootstrap.min.js"></script>
-
+        <script src="js/vendor/verge.min.js"></script>
         <script src="js/main.js"></script>
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
@@ -97,9 +143,35 @@
             (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
             function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
             e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-            e.src='//www.google-analytics.com/analytics.js';
+            e.src='https://www.google-analytics.com/analytics.js';
             r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
             ga('create','UA-XXXXX-X');ga('send','pageview');
+        </script>
+        <script>
+          function update(){
+            var count = 0
+            $('img').each(function(){
+              if ($.inViewport($(this))){
+                count++;
+                if($(this).is('.lazy:not([src])')){
+                  $(this).attr('src', $(this).data('src'));
+                } else if ($(this).is('.watch')){
+                  console.log('.watch img in viewport');
+                }
+              }
+            });
+            $('#eview').text(count);
+          }
+          $(document).ready(function(){
+            $.extend(verge);
+            update();
+            $(window).scroll(function(){
+              update();
+            });
+            $(window).resize(function(){
+              update();
+            });
+          });
         </script>
     </body>
 </html>
