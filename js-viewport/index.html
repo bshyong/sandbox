@@ -31,7 +31,7 @@
         <div class="navbar-header">
           <a class="navbar-brand" href="#">Project name</a>
           <a class="navbar-brand"><span id="eview">0</span> elements in viewport</a>
-          <a class="navbar-brand"><span id="callback" class="hidden">Callback called!</span></a>
+          <a class="navbar-brand"><span id="icount">0</span> images loaded</a>
         </div>
       </div>
     </div>
@@ -60,68 +60,68 @@
         <div class="row">
           <div class="col-md-4">
             <a class="thumbnail">
-              <img class="lazy" data-src="https://c2.staticflickr.com/4/3865/15173725925_9a7cf776b1_z.jpg">
+              <img class="lazy" data-original="https://c2.staticflickr.com/4/3865/15173725925_9a7cf776b1_z.jpg" height="240" width="320">
             </a>
           </div>
           <div class="col-md-4">
             <a class="thumbnail">
-              <img class="lazy" data-src="https://c2.staticflickr.com/6/5561/15167352482_91bf417341.jpg">
+              <img class="lazy" data-original="https://c2.staticflickr.com/6/5561/15167352482_91bf417341.jpg" height="240" width="320">
             </a>
           </div>
           <div class="col-md-4">
             <a class="thumbnail">
-              <img class="lazy" data-src="https://c2.staticflickr.com/4/3857/15165480951_9b85b32f2e.jpg">
-            </a>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-4">
-            <a class="thumbnail">
-              <img class="lazy" data-src="https://c2.staticflickr.com/6/5570/15142948946_2f8fcaeaab.jpg">
-            </a>
-          </div>
-          <div class="col-md-4">
-            <a class="thumbnail">
-              <img class="lazy" data-src="https://c2.staticflickr.com/6/5579/15152685286_25cb3466ee.jpg">
-            </a>
-          </div>
-          <div class="col-md-4">
-            <a class="thumbnail">
-              <img class="lazy" data-src="https://c2.staticflickr.com/4/3918/15141586656_fb74b39b06.jpg">
+              <img class="lazy" data-original="https://c2.staticflickr.com/4/3857/15165480951_9b85b32f2e.jpg" height="240" width="320">
             </a>
           </div>
         </div>
         <div class="row">
           <div class="col-md-4">
             <a class="thumbnail">
-              <img class="lazy" data-src="https://c2.staticflickr.com/4/3918/14983630089_3fc1507621.jpg">
+              <img class="lazy" data-original="https://c2.staticflickr.com/6/5570/15142948946_2f8fcaeaab.jpg" height="240" width="320">
             </a>
           </div>
           <div class="col-md-4">
             <a class="thumbnail">
-              <img class="lazy" data-src="https://c2.staticflickr.com/4/3867/14981875607_56fb3ea99e.jpg">
+              <img class="lazy" data-original="https://c2.staticflickr.com/6/5579/15152685286_25cb3466ee.jpg" height="240" width="320">
             </a>
           </div>
           <div class="col-md-4">
             <a class="thumbnail">
-              <img class="lazy" data-src="https://c2.staticflickr.com/4/3893/14981187537_0b9b25866a.jpg">
+              <img class="lazy" data-original="https://c2.staticflickr.com/4/3918/15141586656_fb74b39b06.jpg" height="240" width="320">
             </a>
           </div>
         </div>
         <div class="row">
           <div class="col-md-4">
             <a class="thumbnail">
-              <img class="lazy watch" data-src="https://c2.staticflickr.com/6/5557/14980722100_b80c56fd14_z.jpg">
+              <img class="lazy" data-original="https://c2.staticflickr.com/4/3918/14983630089_3fc1507621.jpg" height="240" width="320">
             </a>
           </div>
           <div class="col-md-4">
             <a class="thumbnail">
-              <img class="lazy watch" data-src="https://c2.staticflickr.com/6/5552/14980111980_5661858b70_z.jpg">
+              <img class="lazy" data-original="https://c2.staticflickr.com/4/3867/14981875607_56fb3ea99e.jpg" height="240" width="320">
             </a>
           </div>
           <div class="col-md-4">
             <a class="thumbnail">
-              <img class="lazy watch" data-src="https://c2.staticflickr.com/6/5593/14979156069_4b5553ff60.jpg">
+              <img class="lazy" data-original="https://c2.staticflickr.com/4/3893/14981187537_0b9b25866a.jpg" height="240" width="320">
+            </a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <a class="thumbnail">
+              <img class="lazy watch" data-original="https://c2.staticflickr.com/6/5557/14980722100_b80c56fd14_z.jpg" height="240" width="320">
+            </a>
+          </div>
+          <div class="col-md-4">
+            <a class="thumbnail">
+              <img class="lazy watch" data-original="https://c2.staticflickr.com/6/5552/14980111980_5661858b70_z.jpg" height="240" width="320">
+            </a>
+          </div>
+          <div class="col-md-4">
+            <a class="thumbnail">
+              <img class="lazy watch" data-original="https://c2.staticflickr.com/6/5593/14979156069_4b5553ff60.jpg" height="240" width="320">
             </a>
           </div>
         </div>
@@ -136,6 +136,7 @@
 
         <script src="js/vendor/bootstrap.min.js"></script>
         <script src="js/vendor/verge.min.js"></script>
+        <script src="js/vendor/jquery.lazyload.min.js"></script>
         <script src="js/main.js"></script>
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
@@ -148,28 +149,37 @@
             ga('create','UA-XXXXX-X');ga('send','pageview');
         </script>
         <script>
-          function update(){
-            var count = 0
-            $('img').each(function(){
-              if ($.inViewport($(this))){
-                count++;
-                if($(this).is('.lazy:not([src])')){
-                  $(this).attr('src', $(this).data('src'));
-                } else if ($(this).is('.watch')){
-                  console.log('.watch img in viewport');
+          var IMAGEMGR = {
+            img_visible: 0,
+            img_loaded: 0,
+            update_visible: function(){
+              var count = 0;
+              $('img').each(function(){
+                if ($.inViewport($(this))){
+                  count++;
                 }
-              }
-            });
-            $('#eview').text(count);
-          }
+              });
+              this.img_visible = count;
+              $('#eview').text(this.img_visible);
+            },
+            update_loaded: function(){
+              IMAGEMGR.img_loaded++;
+              $('#icount').text(IMAGEMGR.img_loaded);
+            }
+          };
+
           $(document).ready(function(){
+            $('img.lazy').lazyload({
+              load: IMAGEMGR.update_loaded,
+              threshold: 100
+            });
             $.extend(verge);
-            update();
+            IMAGEMGR.update_visible();
             $(window).scroll(function(){
-              update();
+              IMAGEMGR.update_visible();
             });
             $(window).resize(function(){
-              update();
+              IMAGEMGR.update_visible();
             });
           });
         </script>
