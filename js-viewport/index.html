@@ -150,36 +150,36 @@
         </script>
         <script>
           var IMAGEMGR = {
-            img_visible: 0,
-            img_loaded: 0,
-            update_visible: function(){
+            imgVisible: 0,
+            imgLoaded: 0,
+            updateVisibleCount: function(){
               var count = 0;
               $('img').each(function(){
                 if ($.inViewport($(this))){
                   count++;
                 }
               });
-              this.img_visible = count;
-              $('#eview').text(this.img_visible);
+              this.imgVisible = count;
+              $('#eview').text(this.imgVisible);
             },
-            update_loaded: function(){
-              IMAGEMGR.img_loaded++;
-              $('#icount').text(IMAGEMGR.img_loaded);
+            updatedLoadedCount: function(){
+              IMAGEMGR.imgLoaded++;
+              $('#icount').text(IMAGEMGR.imgLoaded);
             }
           };
 
           $(document).ready(function(){
             $('img.lazy').lazyload({
-              load: IMAGEMGR.update_loaded,
+              load: IMAGEMGR.updatedLoadedCount,
               threshold: 100
             });
             $.extend(verge);
-            IMAGEMGR.update_visible();
+            IMAGEMGR.updateVisibleCount();
             $(window).scroll(function(){
-              IMAGEMGR.update_visible();
+              IMAGEMGR.updateVisibleCount();
             });
             $(window).resize(function(){
-              IMAGEMGR.update_visible();
+              IMAGEMGR.updateVisibleCount();
             });
           });
         </script>
