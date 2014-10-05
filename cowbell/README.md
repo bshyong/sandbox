@@ -28,6 +28,13 @@ Subsequent sections will describe the stages in more detail.
 
 Track is the frontend component that monitors and reacts to registered events. For the MVP, we will focus on two types of events - 'impress' and 'click'.
 
+## Tracker integration
+
+We will only be implementing a JS tracker for v1. The easiest way to push js out to sites is to use a CDN like cloudfront. Webpages can synchronously or asynchronously integrate js code (see https://github.com/snowplow/snowplow/wiki/integrating-javascript-tags-onto-your-website).
+
+
+Setup reference: https://github.com/snowplow/snowplow/wiki/javascript-tracker-setup
+
 ### Impression logging
 
 In order for impression logging to work properly, we need to be able to:
