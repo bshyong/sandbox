@@ -149,6 +149,21 @@
             // ga('create','UA-XXXXX-X');ga('send','pageview');
         </script>
         <script>
+          function debounce(func, wait, immediate) {
+            var timeout;
+            return function() {
+              var context = this, args = arguments;
+              var later = function() {
+                timeout = null;
+                if (!immediate) func.apply(context, args);
+              };
+              var callNow = immediate && !timeout;
+              clearTimeout(timeout);
+              timeout = setTimeout(later, wait);
+              if (callNow) func.apply(context, args);
+            };
+          };
+
           var IMAGEMGR = {
             imgVisible: 0,
             imgLoaded: 0,
@@ -175,9 +190,9 @@
             });
             $.extend(verge);
             IMAGEMGR.updateVisibleCount();
-            $(window).scroll(function(){
-              IMAGEMGR.updateVisibleCount();
-            });
+            $(window).scroll(debounce(function(){
+                IMAGEMGR.updateVisibleCount();
+              }, 100));
             $(window).resize(function(){
               IMAGEMGR.updateVisibleCount();
             });
