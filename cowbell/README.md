@@ -61,4 +61,5 @@ For now, the collector can be a dummy server that keeps a map of logged events.
 + Pixel Delivery Best Practices [https://www.admonsters.com/blog/pixel-delivery-best-practices]
 + http://storm.incubator.apache.org/
 + http://highscalability.com/blog/2013/1/21/processing-100-million-pixels-a-day-small-amounts-of-content.html
++ LazySizes: https://github.com/aFarkas/lazysizes
 
