@@ -1,37 +1,101 @@
 var CommentBox = React.createClass({
+  // this.state is private to the component and 
+  // can be changed by calling this.setState()
+  // When the state is updated, the component re-renders itself.
+
+  // getInitialState() executes exactly once during the lifecycle
+  // of the component and sets up the initial state of the component.
+  getInitialState: function() {
+    return {data: []};
+  },
+  loadCommentsFromServer: function() {
+    $.ajax({
+      url: this.props.url,
+      dataType: 'json',
+      success: function(data) {
+        this.setState({data: data});
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.error(this.props.url, status, err.toString());
+      }.bind(this)
+    });
+  },
+  handleCommentSubmit: function(comment) {
+    var comments = this.state.data;
+    comments.push(comment);
+    this.setState({data: comments}, function() {
+      // `setState` accepts a callback. To avoid (improbable) race condition,
+      // `we'll send the ajax request right after we optimistically set the new
+      // `state.
+      $.ajax({
+        url: this.props.url,
+        dataType: 'json',
+        type: 'POST',
+        data: comment,
+        success: function(data) {
+          this.setState({data: data});
+        }.bind(this),
+        error: function(xhr, status, err) {
+          console.error(this.props.url, status, err.toString());
+        }.bind(this)
+      });
+    });
+  },
+  componentDidMount: function() {
+    this.loadCommentsFromServer();
+    setInterval(this.loadCommentsFromServer, this.props.pollInterval);
+  },
   render: function() {
     return (
-      <div className="commentBox"
+      <div className="commentBox">
         <h1>Comments</h1>
-        <CommentList />
-        <CommentForm />
+        <CommentList data={this.state.data} />
+        <CommentForm onCommentSubmit={this.handleCommentSubmit} />
       </div>
     );
   }
 });
 
-React.render(
-  <CommentBox />,
-  document.getElementById('content')
-);
-
 var CommentList = React.createClass({
   render: function() {
+    var commentNodes = this.props.data.map(function(comment, index) {
+      return (
+        // `key` is a React-specific concept and is not mandatory for the
+        // purpose of this tutorial. if you're curious, see more here:
+        // http://facebook.github.io/react/docs/multiple-components.html#dynamic-children
+        <Comment author={comment.author} key={index}>
+          {comment.text}
+        </Comment>
+      );
+    });
     return (
       <div className="commentList">
-        <Comment author="author One">a comment</Comment>
-        <Comment author="author Two">another comment</Comment>
+        {commentNodes}
       </div>
     );
   }
 });
 
 var CommentForm = React.createClass({
+  handleSubmit: function(e) {
+    e.preventDefault();
+    var author = this.refs.author.getDOMNode().value.trim();
+    var text = this.refs.text.getDOMNode().value.trim();
+    if (!text || !author) {
+      return;
+    }
+    this.props.onCommentSubmit({author: author, text: text});
+    this.refs.author.getDOMNode().value = '';
+    this.refs.text.getDOMNode().value = '';
+    return;
+  },
   render: function() {
     return (
-      <div className="commentForm">
-        Hello, world! I am a CommentForm.
-      </div>
+      <form className="commentForm" onSubmit={this.handleSubmit}>
+        <input type="text" placeholder="Your name" ref="author" />
+        <input type="text" placeholder="Say something..." ref="text" />
+        <input type="submit" value="Post" />
+      </form>
     );
   }
 });
@@ -53,10 +117,8 @@ var Comment = React.createClass({
   }
 });
 
-
-var data = [
-  {author: "Pete Hunt", text: "This is one comment"},
-  {author: "Jordan Walke", text: "This is *another* comment"}
-];
-
+React.renderComponent(
+  <CommentBox url="comments.json" pollInterval={500} />,
+  document.getElementById('content')
+);
 
