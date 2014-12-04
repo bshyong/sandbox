@@ -4,4 +4,4 @@ sandbox
 
 A collection of various experiments and small projects
 
-<a href="https://assembly.com/meta/bounties"><img src="https://asm-badger.herokuapp.com/meta/badges/tasks.svg?asdfsdf=df3d" height="24px" alt="Open Tasks" /></a>
+<a href="https://assembly.com/meta/bounties"><img src="https://asm-badger.herokuapp.com/meta/badges/tasks.svg?test=0" height="24px" alt="Open Tasks" /></a>
