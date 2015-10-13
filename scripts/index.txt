@@ -1,0 +1,2 @@
+download website
+wget --mirror -p --html-extension --convert-links -nH www.example.com
