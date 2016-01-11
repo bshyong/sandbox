@@ -27,6 +27,7 @@ class BoomerangSolution
         if points.length == current_case_max_points
           # puts "all points added"
           length_hash = {}
+          point_counter_hash = Hash.new(0)
 
           while (points.length > 1)
             start = points.shift
@@ -34,13 +35,19 @@ class BoomerangSolution
               segment_length = calc_length(start, p)
               # puts "length between #{start} and #{p} is #{segment_length}"
               length_hash["#{segment_length}"] ||= Set.new
-              current_case_solution += 1 if length_hash["#{segment_length}"].include?(start)
-              current_case_solution += 1 if length_hash["#{segment_length}"].include?(p)
+              if length_hash["#{segment_length}"].include?(start)
+                current_case_solution += (point_counter_hash["#{segment_length} #{start.join(' ')}"] >= 2 ? 2 : 1)
+              end
+              if length_hash["#{segment_length}"].include?(p)
+                current_case_solution += (point_counter_hash["#{segment_length} #{p.join(' ')}"] >= 2 ? 2 : 1)
+              end
 
                 # puts "#{segment_length} #{length_hash["#{segment_length}"].inspect} includes #{start} or #{p} COUNT #{current_case_solution}"
 
               length_hash["#{segment_length}"] << start
               length_hash["#{segment_length}"] << p
+              point_counter_hash["#{segment_length} #{start.join(' ')}"] += 1
+              point_counter_hash["#{segment_length} #{p.join(' ')}"] += 1
             end
           end
 
