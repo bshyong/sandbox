@@ -34,10 +34,11 @@ class BoomerangSolution
               segment_length = calc_length(start, p)
               # puts "length between #{start} and #{p} is #{segment_length}"
               length_hash["#{segment_length}"] ||= Set.new
-              if length_hash["#{segment_length}"].include?(start) || length_hash["#{segment_length}"].include?(p)
-                current_case_solution += 1
+              current_case_solution += 1 if length_hash["#{segment_length}"].include?(start)
+              current_case_solution += 1 if length_hash["#{segment_length}"].include?(p)
+
                 # puts "#{segment_length} #{length_hash["#{segment_length}"].inspect} includes #{start} or #{p} COUNT #{current_case_solution}"
-              end
+
               length_hash["#{segment_length}"] << start
               length_hash["#{segment_length}"] << p
             end
